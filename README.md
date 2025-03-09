@@ -25,7 +25,7 @@ print('Cancel order result:', result)"
 
 Since order matching is performed automatically during order addition, you can simulate matching by adding complementary orders:
 
-###### To test order matching
+##### To test order matching
 ```bash
 
 Since order matching is performed automatically during order addition, you can simulate matching by adding complementary orders:
@@ -59,13 +59,3 @@ Standard Libraries: collections, logging
 ### Logging
 The module sets the logging level to INFO to provide feedback on operations such as adding, cancelling, and matching orders. Adjust logging configurations as needed for your project.
 
-Setup
-Ensure your PYTHONPATH includes your project directory. For example:
-
-```bash
-
-export PYTHONPATH='<your path>/data01'
-
-```
-
-export PYTHONPATH='<your path>/data01'
