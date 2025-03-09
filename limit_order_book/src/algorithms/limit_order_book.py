@@ -63,16 +63,16 @@ class LimitOrderBook:
             True if order was cancelled, False otherwise
 
         """
-        logging.info("Cancelling order")
+        logging.info('Cancelling order')
         if order_id not in self.order_map:
             if order_id not in self.order_status:
                 logging.info(
-                    f"Order {order_id} cancel failed - no such active order"
+                    f'Order {order_id} cancel failed - no such active order'
                 )
                 return False
             else:
                 logging.info(
-                    f"Order {order_id} cancel failed - already fully filled"
+                    f'Order {order_id} cancel failed - already fully filled'
                 )
                 return False
         order = self.order_map.pop(order_id)
