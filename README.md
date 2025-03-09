@@ -1,58 +1,18 @@
-### Limit Order Book
+# Private Projects
 
-The Limit Order Book is a Python module for managing and matching buy and sell orders. It uses SortedDict from the sortedcontainers package to maintain separate order books for each side. Orders are added, automatically matched against opposing orders, or cancelled as needed. Logging is used at the INFO level to track order activity.
+Welcome to the **Private Projects** repository. This repository is a collection of several subprojects, each organized in its own directory with its own README.md file.
 
-#### Available commands
+## Table of Contents
 
-##### To add a new order
+- [limit_order_book](limit_order_book/README.md)
 
-```bash
-python3 -c "from src.data_structures.limit_order_book import LimitOrderBook; \
-lob = LimitOrderBook(); \
-lob.add_order(order_id='order1', side='buy', price=100, quantity=10); \
-print('Order added')"
+## Overview
 
-```
-##### To cancel an order
-```bash
+This repository contains multiple private projects. Each subproject is self-contained and includes its own documentation, code, and configuration files. Use the links above to navigate to the README for each specific project.
 
-python3 -c "from src.data_structures.limit_order_book import LimitOrderBook; \
-lob = LimitOrderBook(); \
-lob.add_order(order_id='order1', side='buy', price=100, quantity=10); \
-result = lob.cancel_order('order1'); \
-print('Cancel order result:', result)"
-```
+## Directory Structure
 
-Since order matching is performed automatically during order addition, you can simulate matching by adding complementary orders:
-
-##### To test order matching
-```bash
-
-Since order matching is performed automatically during order addition, you can simulate matching by adding complementary orders:
-
-```
-
-###  Description
-The Limit Order Book module organizes buy and sell orders from traders. It maintains:
-
-Buy Orders: Stored in a SortedDict sorted in descending order (highest bid first).
-Sell Orders: Stored in a SortedDict sorted in ascending order (lowest ask first).
-Orders are stored in deques at each price level for efficient processing. The module includes functions to add orders, cancel orders, and match orders based on price conditions.
-
-### Dependencies
-Python 3.x
-Run the below:
-
-
-
-```bash
-
-pip install -r requirements.txt
-```
-
-Custom Order class: Located at src/data_structures/order.py
-Standard Libraries: collections, logging
-
-### Logging
-The module sets the logging level to INFO to provide feedback on operations such as adding, cancelling, and matching orders. Adjust logging configurations as needed for your project.
-
+```plaintext
+privateProjects/
+├── limit_order_book/
+│   └── README.md
