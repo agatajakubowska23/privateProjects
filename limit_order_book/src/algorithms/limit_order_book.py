@@ -1,15 +1,18 @@
 from sortedcontainers import SortedDict
 from src.data_structures.order import Order
-import collections
+from collections import deque
 import logging
 
 logging.getLogger().setLevel(logging.INFO)
 
+
 class LimitOrderBook:
     """
-    LimitOrderBook is a class to organize buy and sell orders placed by traders.
+    LimitOrderBook is a class to organize buy and sell orders
+    placed by traders.
     Main idea:
-    - adding orders to two SortedDicts depending on the order side (buy -sorted descending or sell -sorted descending)
+    - adding orders to two SortedDicts depending on the order side
+    (buy -sorted descending or sell -sorted descending)
     - canceling orders if there is a need for that
     """
     def __init__(self):
@@ -18,9 +21,16 @@ class LimitOrderBook:
         self.order_map = {}
         self.order_status = {}
 
-    def add_order(self, order_id: str, side:str, price:int, quantity:int)-> None:
+    def add_order(
+            self,
+            order_id: str,
+            side: str,
+            price: int,
+            quantity: int
+    ) -> None:
         """
-        Adding a new order to order book and matching Limit prices with orders from opposite side
+        To add new order to order and match limit prices with orders
+        from opposite side
         Args:
             order_id: order id
             side: 'buy' or 'sell'
@@ -33,17 +43,17 @@ class LimitOrderBook:
         """
         logging.info("Adding order")
         order = Order(order_id, side, price, quantity)
-        self.order_status[order_id]='active'
+        self.order_status[order_id] = 'active'
         logging.info(f"{order} - OK")
         self.match_orders(order)
         if order.quantity > 0:
             order_book = self.buy_orders if side == 'buy' else self.sell_orders
             if price not in order_book:
-                order_book[price] = collections.deque()
+                order_book[price] = deque()
             order_book[price].append(order)
-            self.order_map[order_id]=order
+            self.order_map[order_id] = order
 
-    def cancel_order(self, order_id:str)-> bool:
+    def cancel_order(self, order_id: str) -> bool:
         """
         Canceling order if there is a need for that
         Args:
@@ -56,10 +66,14 @@ class LimitOrderBook:
         logging.info("Cancelling order")
         if order_id not in self.order_map:
             if order_id not in self.order_status:
-                logging.info(f"Order {order_id} cancel failed - no such active order")
+                logging.info(
+                    f"Order {order_id} cancel failed - no such active order"
+                )
                 return False
             else:
-                logging.info(f"Order {order_id} cancel failed - already fully filled")
+                logging.info(
+                    f"Order {order_id} cancel failed - already fully filled"
+                )
                 return False
         order = self.order_map.pop(order_id)
         order_book = (
@@ -113,15 +127,23 @@ class LimitOrderBook:
 
                 order.quantity -= executed_qty
                 resting_order.quantity -= executed_qty
-
+                msg1 = (
+                    f"""
+{order} Fully matched with {
+                    resting_order.order_id} ({executed_qty} @ {best_price})
+"""
+                )
+                msg2 = (
+                    f"""
+{order} Partially matched with {
+                    resting_order.order_id} ({executed_qty} @ {best_price})
+                """
+                )
                 if order.quantity == 0:
-                    logging.info(
-                        f"{order} Fully matched with {resting_order.order_id} ({executed_qty} @ {best_price})"
-                    )
+
+                    logging.info(msg1)
                 else:
-                    logging.info(
-                        f"{order} Partially matched with {resting_order.order_id} ({executed_qty} @ {best_price})"
-                    )
+                    logging.info(msg2)
 
                 if resting_order.quantity == 0:
                     self.order_status[resting_order.order_id] = 'filled'

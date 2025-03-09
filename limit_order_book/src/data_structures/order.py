@@ -1,6 +1,5 @@
-import heapq
-from collections import deque
 from dataclasses import dataclass
+
 
 @dataclass
 class Order:
@@ -12,4 +11,9 @@ class Order:
         self.original_quantity = quantity
 
     def __repr__(self):
-        return f"{self.order_id} {self.side} {self.original_quantity} @ {self.price}"
+        dsc = (
+            f"""
+{self.order_id} {self.side} {self.original_quantity} @ {self.price}
+"""
+        )
+        return dsc
