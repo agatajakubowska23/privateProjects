@@ -4,32 +4,44 @@ The Limit Order Book is a Python module for managing and matching buy and sell o
 
 #### Available commands
 
-##### To add a new order
+1. Create an Instance of LimitOrderBook
 
-```bash
-python3 -c "from src.data_structures.limit_order_book import LimitOrderBook; \
-lob = LimitOrderBook(); \
-lob.add_order(order_id='order1', side='buy', price=100, quantity=10); \
-print('Order added')"
+Before adding or canceling orders, you need to create an instance of the LimitOrderBook:
 
 ```
-##### To cancel an order
-```bash
+from src.data_structures.limit_order_book import LimitOrderBook
 
-python3 -c "from src.data_structures.limit_order_book import LimitOrderBook; \
-lob = LimitOrderBook(); \
-lob.add_order(order_id='order1', side='buy', price=100, quantity=10); \
-result = lob.cancel_order('order1'); \
-print('Cancel order result:', result)"
+lob = LimitOrderBook()
+```
+
+2. Add Multiple Orders on the Same Instance
+
+You can use the same lob instance to add multiple orders:
+
+```
+lob.add_order(order_id='order1', side='buy', price=100, quantity=10)
+lob.add_order(order_id='order2', side='sell', price=105, quantity=5)
+print('Orders added')
+
+```
+3. Cancel an Order on the Same Instance
+
+Once the order is added, you can cancel it using the same instance:
+
+
+```
+result = lob.cancel_order('order1')
 ```
 
 Since order matching is performed automatically during order addition, you can simulate matching by adding complementary orders:
 
-##### To test order matching
-```bash
+4. Simulate Order Matching
 
 Since order matching is performed automatically during order addition, you can simulate matching by adding complementary orders:
 
+```
+lob.add_order(order_id='order3', side='buy', price=105, quantity=5)  # Matches with order2
+lob.add_order(order_id='order4', side='sell', price=100, quantity=10)  # Matches with order1
 ```
 
 ###  Description
@@ -41,17 +53,20 @@ Orders are stored in deques at each price level for efficient processing. The mo
 
 ### Dependencies
 Python 3.x
-Run the below:
+
+Install required dependencies:
 
 
 
 ```bash
-
 pip install -r requirements.txt
 ```
 
 Custom Order class: Located at src/data_structures/order.py
+
 Standard Libraries: collections, logging
+
+
 
 ### Logging
 The module sets the logging level to INFO to provide feedback on operations such as adding, cancelling, and matching orders. Adjust logging configurations as needed for your project.
