@@ -1,0 +1,33 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ourVersions">
+        <value>
+          <list size="3">
+            <item index="0" class="java.lang.String" itemvalue="2.7" />
+            <item index="1" class="java.lang.String" itemvalue="3.13" />
+            <item index="2" class="java.lang.String" itemvalue="3.7" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="9">
+            <item index="0" class="java.lang.String" itemvalue="confluent-kafka" />
+            <item index="1" class="java.lang.String" itemvalue="navigator-updater" />
+            <item index="2" class="java.lang.String" itemvalue="xlsx2csv" />
+            <item index="3" class="java.lang.String" itemvalue="anaconda-client" />
+            <item index="4" class="java.lang.String" itemvalue="conda-repo-cli" />
+            <item index="5" class="java.lang.String" itemvalue="TBB" />
+            <item index="6" class="java.lang.String" itemvalue="conda-verify" />
+            <item index="7" class="java.lang.String" itemvalue="anaconda-navigator" />
+            <item index="8" class="java.lang.String" itemvalue="datashape" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
