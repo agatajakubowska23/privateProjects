@@ -39,18 +39,15 @@ Buy Orders: Stored in a SortedDict sorted in descending order (highest bid first
 Sell Orders: Stored in a SortedDict sorted in ascending order (lowest ask first).
 Orders are stored in deques at each price level for efficient processing. The module includes functions to add orders, cancel orders, and match orders based on price conditions.
 
-Dependencies
+### Dependencies
 Python 3.x
-sortedcontainers: Install using:
-bash
-Copy
-Edit
+Run the below:
 
 
 
 ```bash
 
-pip install sortedcontainers
+pip install -r requirements.txt
 ```
 
 Custom Order class: Located at src/data_structures/order.py
