@@ -67,7 +67,6 @@ Custom Order class: Located at src/data_structures/order.py
 Standard Libraries: collections, logging
 
 
-
 ### Logging
 The module sets the logging level to INFO to provide feedback on operations such as adding, cancelling, and matching orders. Adjust logging configurations as needed for your project.
 
